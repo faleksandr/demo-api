@@ -13,6 +13,8 @@ final class RandomDogService {
 
     private const IMAGE_DIR = 'random-dog';
 
+    private const API_URL = 'https://dog.ceo/api/breeds/image/random/5';
+
     public function __construct(Client $httpClient)
     {
         $this->httpClient = $httpClient;
@@ -32,7 +34,7 @@ final class RandomDogService {
         $saveOnlyFirst = RandomDog::count() > 0;
 
         foreach ($array as $imageUrl) {
-            $pathInfo = pathinfo($array[0]);
+            $pathInfo = pathinfo($imageUrl);
 
             $contents = file_get_contents($imageUrl);
 
@@ -55,7 +57,7 @@ final class RandomDogService {
 
     private function getResponseData(): array
     {
-        $response = $this->httpClient->get('https://dog.ceo/api/breeds/image/random/5');
+        $response = $this->httpClient->get(self::API_URL);
 
         $responseBody = $response->getBody();
 

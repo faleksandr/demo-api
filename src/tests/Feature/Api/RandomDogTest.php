@@ -18,7 +18,7 @@ class RandomDogTest extends TestCase
     /**
      * @test
      */
-    public function test_it_can_get_random_dog(): void
+    public function test_it_can_get_a_random_dog(): void
     {
         Storage::fake();
 
